@@ -1,0 +1,12 @@
+.offcanvas-start{
+    width: auto !important;
+}
+
+@media screen and (width<=992px) {
+
+.offcanvas-start{
+    width: 400px !important;
+}
+
+
+}
