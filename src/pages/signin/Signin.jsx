@@ -8,11 +8,14 @@ const [msg, setmsg]=useState({mg:'',type:''})
 const onChange=(e)=>{
   setData({...formData,[e.target.name]:e.target.value})
   // console.log(formData);
-
 }
 
 const submitForm=async (e)=>{
-e.preventDefault();
+  e.preventDefault();
+  if(formData.Name=="" || formData.Email=='' || formData.Password==""){
+    return setmsg({msg:'Must fill all the fields', type:'danger'})
+  }
+
 const responce=await fetch("http://localhost:5000/auth/login",{
   method:'POST',
   headers:{
@@ -21,7 +24,6 @@ const responce=await fetch("http://localhost:5000/auth/login",{
   body:JSON.stringify({Name:formData.Name, Email:formData.Email, Password:formData.Password})
 });
 const data=await responce.json();
-// console.log(data);
 if(data.success){
   localStorage.setItem('token',data.token)
 
@@ -38,7 +40,7 @@ else{
         <form onSubmit={submitForm}>
         <Input type='text' label='Name' placeholder='Enter your Name' name='Name' onChange={onChange}/>
         <Input type='Email' label='Email' placeholder='Enter your Email' name='Email' onChange={onChange}/>
-        <Input type='Password' label='Password' placeholder='Enter your Password' onChange={onChange} name='Password'/>
+        <Input type='Password' label='Password' placeholder='Enter your Password' name='Password' onChange={onChange} />
         <Button btntype='primary mt-3 float-end' btnName='Sign in'/>
         <p className={`text-center text-${msg.type}`}>{msg.msg}</p>
         </form>
