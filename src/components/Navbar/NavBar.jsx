@@ -1,13 +1,13 @@
 import React from 'react'
 import './NavBar.css'
 // import { Link } from 'react-router-dom'
-import {Link } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 export default function NavBar() {
   return (
       <header className=" bg-light">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container ">
-          <Link className="navbar-brand" to="/">Navbar</Link>
+          <NavLink className="navbar-brand" to="/">Navbar</NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -20,14 +20,10 @@ export default function NavBar() {
                 <div className="offcanvas-body">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                          <Link className="nav-link active" aria-current="page" to='/'>Home</Link>
+                          <NavLink className="nav-link " aria-current="page" to='/'>Home</NavLink>
                         </li>
-                        {/* <li className="nav-item">
-                          <Link className="nav-link" to='/signin'>Sign in</Link>
-                        </li> */}
-                   
                         <li className="nav-item">
-                          <Link className="nav-link" to='/signup'>Sign up</Link>
+                          <NavLink className="nav-link" to='/signup'>Sign up</NavLink>
                         </li>
                       </ul>
                 </div>
@@ -35,5 +31,8 @@ export default function NavBar() {
         </div>
         </nav>
     </header>
+    // <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+    //   <NavLink  className="navbar-brand" to="/">Tech Blog</NavLink>
+    // </nav>
   )
 }
