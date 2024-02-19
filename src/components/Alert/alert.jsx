@@ -1,17 +1,18 @@
 import React from 'react'
-
-export default function Alert() {
+import './alert.css'
+export default function Alert({alertType, msg}) {
   return (
-    <div className='d-flex justify-content-center'>
+    <div className='d-flex justify-content-center '>
        <div
-        className="toast show  align-items-center position-absolute top-50"
+        className="toast show  align-items-center hide
+        "
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
       >
         <div className="d-flex">
-          <div className="toast-body text-danger">
-            Hello, world! This is a toast message.
+          <div className={`toast-body text-${alertType} `}>
+            <b>{msg}</b>
           </div>
           <button
             type="button"
