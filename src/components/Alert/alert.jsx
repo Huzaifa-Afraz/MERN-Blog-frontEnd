@@ -1,10 +1,10 @@
 import React from 'react'
 import './alert.css'
-export default function Alert({alertType, msg}) {
+export default function Alert({alertType, msg , id}) {
   return (
-    <div className='d-flex justify-content-center '>
-       <div
-        className="toast show  align-items-center hide
+    <div id={id} className='d-flex justify-content-center '>
+       <div 
+        className="toast align-items-center hide
         "
         role="alert"
         aria-live="assertive"
