@@ -2,8 +2,8 @@ import React from 'react'
 import './alert.css'
 export default function Alert({alertType, msg , id}) {
   return (
-    <div id={id} className='d-flex justify-content-center '>
-       <div 
+    <div className='d-flex justify-content-center '>
+       <div  id={id} 
         className="toast align-items-center hide
         "
         role="alert"

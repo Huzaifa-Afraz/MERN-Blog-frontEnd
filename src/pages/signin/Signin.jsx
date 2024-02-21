@@ -1,4 +1,4 @@
-import React, { useState,useRef } from "react";
+import React, { useState } from "react";
 import Input from "../../components/Input/Input.jsx";
 import Button from "../../components/Button/Button.jsx";
 import Alert from "../../components/Alert/alert.jsx";
@@ -6,32 +6,17 @@ import "./Signin.css";
 export default function Signin() {
   const [formData, setData] = useState({ Name: "", Email: "", Password: "" });
   const [msg, setmsg] = useState({ mg: "", type: "" });
-  const toastRef = useRef(null);
-  const showToast = (message, type) => {
-    setmsg({ msg: message, type: type });
-    const toastElement = new window.bootstrap.Toast(toastRef.current);
-    toastElement.show();
-
-    setTimeout(() => {
-      toastElement.hide();
-    }, 3000);
-  };
   const onChange = (e) => {
     setData({ ...formData, [e.target.name]: e.target.value });
-    // console.log(formData);
   };
-  // var toast=document.getElementsByClassName('toast');
-  // toast.show();
-
   const submitForm = async (e) => {
     e.preventDefault();
-
     if (
       formData.Name === "" ||
       formData.Email === "" ||
       formData.Password === ""
     ) {
-      return showToast("Must fill all the fields", "danger");;
+      return setmsg({ msg: "Must fill all the fields", type: "danger" });
     }
 
     const responce = await fetch("http://localhost:5000/auth/login", {
@@ -49,11 +34,9 @@ export default function Signin() {
     if (data.success) {
       localStorage.setItem("token", data.token);
 
-      // setmsg({ msg: data.msg, type: "success" });
-      showToast(data.msg, "success");
+      setmsg({ msg: data.msg, type: "success" });
     } else {
-      // setmsg({ msg: data.msg, type: "danger" });
-      showToast(data.msg, "danger");
+      setmsg({ msg: data.msg, type: "danger" });
     }
   };
   return (
@@ -86,12 +69,12 @@ export default function Signin() {
             onChange={onChange}
           />
           <Button btntype="primary mt-3 float-end" btnName="Sign in" />
-          {/* <p className={`text-center text-${msg.type}`}>{msg.msg}</p> */}
+          <p className={`text-center text-${msg.type}`}>{msg.msg}</p>
         </form>
         
       </div>
     </div>
-    <Alert id="myToast" msg={`${msg.msg}`} alertType={`${msg.type}`} ref={toastRef}/>
+    {/* <Alert msg={`${msg.msg}`} alertType={`${msg.type}`}/> */}
     </div>
   );
 }
