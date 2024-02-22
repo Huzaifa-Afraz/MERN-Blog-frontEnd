@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import {useNavigate } from 'react-router-dom';
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button.jsx'
 export default function Signup() {
+  const Navigate=useNavigate();
   const [password, setPassword]=useState('');
   const [Cpassword, setCpassword]=useState('');
   const [matchPassword, setMpassword]=useState(false);
@@ -35,10 +37,13 @@ setMpassword(password===e.target.value?true:false)
       })
       const responce= await data.json();
       if(responce.success){
-        alert(responce.msg);
+        setTimeout(() => {
+          
+        }, 3000);
+        Navigate('/signin')
       }
     }else{
-      alert("Passwords do not match");
+      alert('some error occured');
     }
     
   };

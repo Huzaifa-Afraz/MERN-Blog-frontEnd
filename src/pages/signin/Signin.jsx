@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Input from "../../components/Input/Input.jsx";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button.jsx";
 import Alert from "../../components/Alert/alert.jsx";
 import "./Signin.css";
 export default function Signin() {
+  const Navigate=useNavigate();
   const [formData, setData] = useState({ Name: "", Email: "", Password: "" });
   const [msg, setmsg] = useState({ mg: "", type: "" });
   const onChange = (e) => {
@@ -35,6 +37,9 @@ export default function Signin() {
       localStorage.setItem("token", data.token);
 
       setmsg({ msg: data.msg, type: "success" });
+      setTimeout(() => {
+        Navigate('/')
+      }, 2000);
     } else {
       setmsg({ msg: data.msg, type: "danger" });
     }

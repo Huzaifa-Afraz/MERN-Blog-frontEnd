@@ -23,6 +23,9 @@ export default function NavBar() {
                           <NavLink className="nav-link " aria-current="page" to='/'>Home</NavLink>
                         </li>
                         <li className="nav-item">
+                          <NavLink className="nav-link " aria-current="page" to='/signin'>Sign in</NavLink>
+                        </li>
+                        <li className="nav-item">
                           <NavLink className="nav-link" to='/signup'>Sign up</NavLink>
                         </li>
                       </ul>
@@ -31,8 +34,5 @@ export default function NavBar() {
         </div>
         </nav>
     </header>
-    // <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
-    //   <NavLink  className="navbar-brand" to="/">Tech Blog</NavLink>
-    // </nav>
   )
 }
