@@ -8,6 +8,7 @@ export default function Signin() {
   const Navigate=useNavigate();
   const [formData, setData] = useState({ Name: "", Email: "", Password: "" });
   const [msg, setmsg] = useState({ mg: "", type: "" });
+
   const onChange = (e) => {
     setData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -79,7 +80,7 @@ export default function Signin() {
         
       </div>
     </div>
-    {/* <Alert msg={`${msg.msg}`} alertType={`${msg.type}`}/> */}
+  {/* {msg.msg && <Alert msg={`${msg.msg}`} className='show' alertType={`${msg.type}`}/>} */}
     </div>
   );
 }
