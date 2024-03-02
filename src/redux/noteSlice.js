@@ -26,8 +26,8 @@ export const noteSlice=createSlice({
         //     return responce;
         // },
         callReducer:(state, action)=>{
-state.notes=action.payload
-            console.log(action.payload);
+state.notes.push(action.payload)
+            // console.log(action.payload);
         }
     //     deleteBlog:(state,action)=>{
     //        return state.notes = state.notes.filter((item,i)=> i!==action.payload)
