@@ -1,6 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 // const url='http://localhost:8001';
+export const fetchNotes= createAsyncThunk('fetchNotes', async()=>{
 
+})
 export const noteSlice=createSlice({
     name:'note',
     initialState:{
