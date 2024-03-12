@@ -1,6 +1,6 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
-import { callReducer } from '../../redux/noteSlice';
+import { callReducer,fetchNotes } from '../../redux/noteSlice';
 export default function Home() {
     const notes=useSelector((state)=>state.note);
     console.log("notes.notes run")
@@ -13,6 +13,12 @@ e.preventDefault();
         dispatch(callReducer({title:'helo',descreption:'helo desc',tags:'personal'}))
 
     }
+    useEffect( ()=>{
+       if(!notes.isLoading){
+           dispatch(fetchNotes())
+       }
+        
+     },[dispatch])
   return (
     <div>
       <button 
