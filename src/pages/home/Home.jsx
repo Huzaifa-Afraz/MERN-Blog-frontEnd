@@ -17,13 +17,17 @@ e.preventDefault();
        if(!notes.isLoading){
            dispatch(fetchNotes())
        }
+       
         
      },[dispatch])
+    
   return (
     <div>
       <button 
       onClick={handleClick}
       >add note</button>
+{notes.isLoading && <h1>loding...</h1>}
+
    {notes && notes.notes.map(note => (
   <div >
     <h1>{note.title}</h1>
