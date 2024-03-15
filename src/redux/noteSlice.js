@@ -7,10 +7,14 @@ const headers={
 "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjU5ZWI4ZjY3NmIxMjgzMTE2YjhhOWFiIiwiaWF0IjoxNzA0OTAxMDI2fQ.dvwbY_07zEOpMQiEoor7x3CRlIPcER0XHT3och0jQuc",
 "Content-Type":"application/json"
 }
-export const fetchNotes = createAsyncThunk('notes/fetchnotes', async () => {
+export const fetchNotes = createAsyncThunk('notes/fetchNotes', async () => {
   const response = await axios.get(url + '/api/show-blogs',{headers});
   return response.data;
 });
+export const addNote = createAsyncThunk('notes/addNotes', async(blog)=>{
+const response=await axios.post(url+'/api/create-blog',{...blog},{headers})
+return response.data;
+})
 
 export const noteSlice = createSlice({
   name: 'note',

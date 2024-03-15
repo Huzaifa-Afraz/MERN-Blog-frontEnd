@@ -1,16 +1,23 @@
 import React,{useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
-import { callReducer,fetchNotes } from '../../redux/noteSlice';
+import { callReducer,fetchNotes,addNote } from '../../redux/noteSlice';
 export default function Home() {
+  const dispatch=useDispatch();
     const notes=useSelector((state)=>state.note);
-    console.log("notes.notes run")
-    console.log(notes.notes)
-    console.log("notes run")
-    console.log(notes)
-    const dispatch=useDispatch();
+    // console.log("notes.notes run")
+    // console.log(notes.notes)
+    // console.log("notes run")
+// console.log(notes.notes.blogs)
+    notes.notes.forEach(element => {
+      
+      element.blogs.forEach(element => {
+        console.log(element);
+      });
+    });
+
     const handleClick=(e)=>{
 e.preventDefault();
-        dispatch(callReducer({title:'helo',descreption:'helo desc',tags:'personal'}))
+        dispatch(addNote({title:'helo',descreption:'helo desc',tags:'personal'}))
 
     }
     useEffect( ()=>{
