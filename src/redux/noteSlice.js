@@ -12,7 +12,9 @@ export const fetchNotes = createAsyncThunk('notes/fetchNotes', async () => {
   return response.data;
 });
 export const addNote = createAsyncThunk('notes/addNotes', async(blog)=>{
-const response=await axios.post(url+'/api/create-blog',{...blog},{headers})
+  console.log(blog)
+const response=await axios.post(url+'/api/add-blog',{title:blog.title,descreption:blog.descreption,tags:blog.tags},{headers})
+console.log(response.data)
 return response.data;
 })
 
@@ -21,6 +23,7 @@ export const noteSlice = createSlice({
   initialState: {
     notes: [],
     isLoading: false,
+    msg:null,
     error: null,
   },
   reducers: {},
@@ -41,6 +44,12 @@ export const noteSlice = createSlice({
         state.error = action.error;
         console.log('pending rejected')
       });
+      builder.addCase(addNote.fulfilled, (state, action) => {
+        state.msg= action.payload.msg;
+        // console.log(state.msg)
+        // console.log('blog added'+action.payload.msg+action.msg)
+        // state.notes.unshift(action.payload)
+      })
   },
 });
 
