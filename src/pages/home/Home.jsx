@@ -1,6 +1,8 @@
 import React,{useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
+import Card from '../../components/card/Card.jsx';
 import { callReducer,fetchNotes,addNote } from '../../redux/noteSlice';
+
 export default function Home() {
   const dispatch=useDispatch();
     const notes=useSelector((state)=>state.note);
@@ -30,14 +32,15 @@ console.log('working to add note')
         
      },[dispatch])
      const notesList = notes.notes.flatMap(note => note.blogs).map(note => (
-      <div className='card' key={note.id}>
-        <h1>{note.title}</h1>
-        <h2>{note.descreption}</h2> 
-        <h3>{note.tags}</h3>
-      </div>
+      // <div className='card' key={note.id}>
+      //   <h1>{note.title}</h1>
+      //   <h2>{note.descreption}</h2> 
+      //   <h3>{note.tags}</h3>
+        <Card key={note.id} title={note.title} descreption={note.descreption} />
+      // </div>
     ));
   return (
-    <div>
+    <div className='container'>
       <button 
       onClick={handleClick}
       >add note</button>
@@ -52,7 +55,7 @@ console.log('working to add note')
   </div>
   )
   } */}
-  <div>
+  <div className='row gap-3'>
     {notesList}
   </div>
    {/* { notes.notes.map(note => (

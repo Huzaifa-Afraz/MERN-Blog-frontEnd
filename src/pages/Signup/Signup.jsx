@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useNavigate } from 'react-router-dom';
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button.jsx'
+import './Signup.css';
 export default function Signup() {
   const Navigate=useNavigate();
   const [password, setPassword]=useState('');
