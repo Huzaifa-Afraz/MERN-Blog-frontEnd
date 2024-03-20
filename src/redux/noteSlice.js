@@ -12,9 +12,7 @@ export const fetchNotes = createAsyncThunk('notes/fetchNotes', async () => {
   return response.data;
 });
 export const addNote = createAsyncThunk('notes/addNotes', async(blog)=>{
-  console.log(blog)
-const response=await axios.post(url+'/api/add-blog',{title:blog.title,descreption:blog.descreption,tags:blog.tags},{headers})
-console.log(response.data)
+const response=await axios.post(url+'/api/add-blog',{title:blog.title,descreption:blog.descreption,tags:blog.tags},{headers});
 return response.data;
 })
 
@@ -31,24 +29,18 @@ export const noteSlice = createSlice({
     builder
       .addCase(fetchNotes.pending, (state) => {
         state.isLoading = true;
-        state.error = null; // Clear any previous errors
-        console.log('pending state')
+        state.error = null; 
       })
       .addCase(fetchNotes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.notes.push(action.payload);
-        console.log('pending fulfilled')
       })
       .addCase(fetchNotes.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error;
-        console.log('pending rejected')
       });
       builder.addCase(addNote.fulfilled, (state, action) => {
         state.msg= action.payload.msg;
-        // console.log(state.msg)
-        // console.log('blog added'+action.payload.msg+action.msg)
-        // state.notes.unshift(action.payload)
       })
   },
 });
