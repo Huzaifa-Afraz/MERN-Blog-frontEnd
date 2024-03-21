@@ -15,6 +15,10 @@ export const addNote = createAsyncThunk('notes/addNotes', async(blog)=>{
 const response=await axios.post(url+'/api/add-blog',{title:blog.title,descreption:blog.descreption,tags:blog.tags},{headers});
 return response.data;
 })
+export const deleteBlog=createAsyncThunk("deleteBlog",async(id)=>{
+const response = await axios.delete(url+`/api/delete/${id}`,{headers});
+return response.data;
+})
 
 export const noteSlice = createSlice({
   name: 'note',
@@ -33,7 +37,9 @@ export const noteSlice = createSlice({
       })
       .addCase(fetchNotes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.notes.push(action.payload);
+        // state.notes.push(action.payload);
+        state.notes = action.payload;
+        // console.log(action.payload)
       })
       .addCase(fetchNotes.rejected, (state, action) => {
         state.isLoading = false;
@@ -41,6 +47,15 @@ export const noteSlice = createSlice({
       });
       builder.addCase(addNote.fulfilled, (state, action) => {
         state.msg= action.payload.msg;
+        // console.log(action.payload.saveblog)
+        // state.notes=[...action.payload.saveblog];
+        
+      })
+      builder.addCase(deleteBlog.fulfilled, (state, action) => {
+        state.msg= action.payload.msg;
+        // console.log(action.payload.saveblog)
+        // state.notes=[...action.payload.saveblog];
+        
       })
   },
 });

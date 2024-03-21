@@ -1,14 +1,12 @@
 import React,{useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
-import Card from '../../components/card/Card.jsx';
+import Card from '../../components/card/Card';
 import { callReducer,fetchNotes,addNote } from '../../redux/noteSlice';
 
 export default function Home() {
   const dispatch=useDispatch();
     const notes=useSelector((state)=>state.note);
-    console.log("notes.notes run")
     // console.log(notes.notes)
-    console.log("notes run")
 // console.log(notes.notes.blogs)
 
     // notes.notes.forEach(element => {
@@ -21,24 +19,27 @@ export default function Home() {
 
     const handleClick=(e)=>{
 e.preventDefault();
-console.log('working to add note')
-        dispatch(addNote({title:'new hello word blog',descreption:'helo from hello world blog',tags:'testing'}))
+        dispatch(addNote({title:'new hello word blog 2',descreption:'helo from hello world blog',tags:'testing'}))
     }
     useEffect( ()=>{
        if(!notes.isLoading){
            dispatch(fetchNotes())
-       }
        
+       }
         
      },[dispatch])
-     const notesList = notes.notes.flatMap(note => note.blogs).map(note => (
+    //  const notesList = notes.notes.flatMap(note => note.blogs).map(note => (
+       const notesList =notes.notes && notes.notes.blogs ? notes.notes.blogs.map(note => (
       // <div className='card' key={note.id}>
       //   <h1>{note.title}</h1>
       //   <h2>{note.descreption}</h2> 
       //   <h3>{note.tags}</h3>
-        <Card key={note.id} title={note.title} descreption={note.descreption} />
+      <>
+      {/* {console.log(note._id)} */}
+        <Card id={note._id} title={note.title} descreption={note.descreption} />
+        </>
       // </div>
-    ));
+    )):[];
   return (
     <div className='container'>
       <button 
