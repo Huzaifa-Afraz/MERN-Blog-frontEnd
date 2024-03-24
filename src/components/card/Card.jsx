@@ -2,7 +2,7 @@ import React, {useRef} from 'react'
 import './card.css';
 import {useDispatch} from 'react-redux'
 import {deleteBlog} from '../../redux/noteSlice'
-import Modal from '../modal/Modal';
+import Modal from '../modal/Modal.jsx';
 export default function Card({id, title, descreption}) {
   const  dispatch= useDispatch();
   const modalRef=useRef(null);

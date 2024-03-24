@@ -19,6 +19,10 @@ export const deleteBlog=createAsyncThunk("deleteBlog",async(id)=>{
 const response = await axios.delete(url+`/api/delete/${id}`,{headers});
 return response.data;
 })
+export const updateBlog=createAsyncThunk("updateBlog",async(blog)=>{
+const response = await axios.delete(url+`/api/update/${blog.id}`,{title:blog.title,descreption:blog.descreption,tags:blog.tags},{headers});
+return response.data;
+})
 
 export const noteSlice = createSlice({
   name: 'note',
@@ -47,14 +51,14 @@ export const noteSlice = createSlice({
       });
       builder.addCase(addNote.fulfilled, (state, action) => {
         state.msg= action.payload.msg;
-        // console.log(action.payload.saveblog)
-        // state.notes=[...action.payload.saveblog];
         
       })
       builder.addCase(deleteBlog.fulfilled, (state, action) => {
         state.msg= action.payload.msg;
-        // console.log(action.payload.saveblog)
-        // state.notes=[...action.payload.saveblog];
+        
+      })
+      builder.addCase(updateBlog.fulfilled, (state, action) => {
+        state.msg= action.payload.msg;
         
       })
   },
