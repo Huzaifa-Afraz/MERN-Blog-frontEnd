@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import Card from '../../components/card/Card';
 import { callReducer,fetchNotes,addNote } from '../../redux/noteSlice';
-
+import Modal from '../../components/modal/Modal';
 export default function Home() {
   const dispatch=useDispatch();
     const notes=useSelector((state)=>state.note);
@@ -46,24 +46,11 @@ e.preventDefault();
       onClick={handleClick}
       >add note</button>
 {notes.isLoading && <h1>loding...</h1>}
-
-{/* {notes.notes.flatMap(note => note.blogs).forEach(note =>
-// console.log(note.title+note.tags)
-  <div className='card' key={note._id}>
-    <h1>{note.title}</h1>
-    <h2>{note.descreption}</h2> 
-    <h3>{note.tags}</h3>
-  </div>
-  )
-  } */}
+<Modal/>
   <div className='row gap-3'>
     {notesList}
   </div>
-   {/* { notes.notes.map(note => (
-     note.blogs.map(note=>{
-  
-  })
-))} */}
+
     </div>
   )
 }
