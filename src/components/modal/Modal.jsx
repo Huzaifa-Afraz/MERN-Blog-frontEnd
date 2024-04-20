@@ -26,7 +26,6 @@ export default function Modal({Ref}) {
     </div>
   </div>
 </div>
-      
     </div>
   )
 }

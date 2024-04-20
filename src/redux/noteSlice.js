@@ -20,7 +20,7 @@ const response = await axios.delete(url+`/api/delete/${id}`,{headers});
 return response.data;
 })
 export const updateBlog=createAsyncThunk("updateBlog",async(blog)=>{
-const response = await axios.delete(url+`/api/update/${blog.id}`,{title:blog.title,descreption:blog.descreption,tags:blog.tags},{headers});
+const response = await axios.put(url+`/api/update/${blog.id}`,{title:blog.title,descreption:blog.descreption,tags:blog.tags},{headers});
 return response.data;
 })
 
@@ -61,6 +61,20 @@ export const noteSlice = createSlice({
         state.msg= action.payload.msg;
         
       })
+      // .addCase(deleteBlog.pending, (state) => {
+      //   state.isLoading = true;
+      //   state.error = null;
+      // })
+      // .addCase(deleteBlog.fulfilled, (state, action) => {
+      //   state.isLoading = false;
+      //   // Remove the deleted blog from the state
+      //   state.notes = state.notes;
+      //   state.msg = "Blog deleted successfully";
+      // })
+      // .addCase(deleteBlog.rejected, (state, action) => {
+      //   state.isLoading = false;
+      //   state.error = action.error.msg; // Assuming the error message is in action.error.message
+      // });
   },
 });
 

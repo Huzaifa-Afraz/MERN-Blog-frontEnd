@@ -1,8 +1,13 @@
 import React from 'react'
 import './NavBar.css'
 // import { Link } from 'react-router-dom'
-import {NavLink } from "react-router-dom";
+import {NavLink, useNavigate } from "react-router-dom";
 export default function NavBar() {
+  const  navigate = useNavigate();
+  const handleLogout=()=>{
+    localStorage.removeItem('token');
+    navigate('/signin')
+  }
   return (
       <header className=" bg-light">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,12 +27,15 @@ export default function NavBar() {
                         <li className="nav-item">
                           <NavLink className="nav-link " aria-current="page" to='/'>Home</NavLink>
                         </li>
-                        <li className="nav-item">
-                          <NavLink className="nav-link " aria-current="page" to='/signin'>Sign in</NavLink>
+                        {localStorage.getItem('token')?<li className="nav-item">
+                          <NavLink className="nav-link btn btn-primary" aria-current="page" onClick={handleLogout}>Log out</NavLink>
+                        </li>:
+                        <><li className="nav-item">
+                        <NavLink className="nav-link " aria-current="page" to='/signin'>Sign in</NavLink>
                         </li>
                         <li className="nav-item">
-                          <NavLink className="nav-link" to='/signup'>Sign up</NavLink>
-                        </li>
+                           <NavLink className="nav-link" to='/signup'>Sign up</NavLink>
+                        </li> </>}
                       </ul>
                 </div>
           </div>
