@@ -3,8 +3,10 @@ import axios from 'axios';
 
 // API base URL
 const url = 'http://localhost:5000';
+const Token=localStorage.getItem('token')
 const headers={
-"auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjU5ZWI4ZjY3NmIxMjgzMTE2YjhhOWFiIiwiaWF0IjoxNzA0OTAxMDI2fQ.dvwbY_07zEOpMQiEoor7x3CRlIPcER0XHT3och0jQuc",
+// "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjU5ZWI4ZjY3NmIxMjgzMTE2YjhhOWFiIiwiaWF0IjoxNzA0OTAxMDI2fQ.dvwbY_07zEOpMQiEoor7x3CRlIPcER0XHT3och0jQuc",
+"auth-token":Token,
 "Content-Type":"application/json"
 }
 export const fetchNotes = createAsyncThunk('notes/fetchNotes', async () => {

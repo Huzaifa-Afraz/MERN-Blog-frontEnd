@@ -1,8 +1,11 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import Card from '../../components/card/Card';
 import { callReducer,fetchNotes,addNote } from '../../redux/noteSlice';
 import Modal from '../../components/modal/Modal';
+import Input from '../../components/Input/Input';
+import Textarea from '../../components/TextArea/Textarea';
+import Button from '../../components/Button/Button';
 export default function Home() {
   const dispatch=useDispatch();
     const notes=useSelector((state)=>state.note);
@@ -16,10 +19,17 @@ export default function Home() {
     //   });
     // });
     
-
-    const handleClick=(e)=>{
-e.preventDefault();
-        dispatch(addNote({title:'new hello word blog 2',descreption:'helo from hello world blog',tags:'testing'}))
+const [note, setNote]=useState({title:"",descreption:"", tags:""});
+const change= (e)=>{
+  console.log(note)
+  setNote({...note,[e.target.name]:e.target.value})
+}
+    const handleSubmit=(e)=>{
+       e.preventDefault();
+      //  console.log(note.title, note.descreption, note.tags)
+        // dispatch(addNote({title:note.title,descreption:note.descreption,tags:note.tags}))
+        dispatch(addNote({title:note.title,descreption:note.descreption,tags:note.tags}))
+        window.location.reload();
     }
     useEffect( ()=>{
        if(!notes.isLoading){
@@ -42,9 +52,16 @@ e.preventDefault();
     )):[];
   return (
     <div className='container'>
-      <button 
+      <form onSubmit={handleSubmit}>
+        <Input placeholder={'Enter title'} name={'title'} label={'Title'} type={'text'} onChange={change}/>
+      {/* <Input placeholder={'Enter description'}/> */}
+      <Textarea placeholder={'Enter description'} label={'Description'} name={'descreption'} onChange={change}/>
+      <Input placeholder={'Enter tags'} name={'tags'} onChange={change}/>
+      <Button btnName={'Add'} btntype={'primary'}/>
+      </form>
+      {/* <button 
       onClick={handleClick}
-      >add note</button>
+      >add note</button> */}
 {notes.isLoading && <h1>loding...</h1>}
 <Modal/>
   <div className='row gap-3'>
