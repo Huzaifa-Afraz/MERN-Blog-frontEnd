@@ -1,7 +1,8 @@
 import React from 'react'
 import Input from '../Input/Input'
 import Textarea from '../TextArea/Textarea'
-export default function Modal({Ref}) {
+export default function Modal({Ref,title}) {
+  console.log("title: " + title);
   return (
     <div>
 <button type="button" ref={Ref} className='d-none' data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -14,8 +15,10 @@ export default function Modal({Ref}) {
         <h5 className="modal-title" id="staticBackdropLabel">Update Blog</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      
       <div className="modal-body">
-        <Input placeholder={'Title'} name={'title'} type={'text'} label={'Title'}/>
+        
+        <Input placeholder={'Title'} name={'title'} type={'text'} label={'Title'} value={title}/>
         <Textarea label={"Enter blog description"} placeholder={'Description'} name={'Descreption'}/>
         <Input placeholder={'Enter Tags'} label={"Tags"} type={'text'} name={'tags'}/>
       </div>

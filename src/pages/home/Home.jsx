@@ -46,7 +46,7 @@ const change= (e)=>{
       //   <h3>{note.tags}</h3>
       <>
       {/* {console.log(note._id)} */}
-        <Card id={note._id} title={note.title} descreption={note.descreption} />
+        <Card id={note._id} title={note.title} descreption={note.descreption} tags={note.tags} />
         </>
       // </div>
     )):[];
