@@ -21,7 +21,7 @@ export default function Home() {
     
 const [note, setNote]=useState({title:"",descreption:"", tags:""});
 const change= (e)=>{
-  console.log(note)
+  // console.log(note)
   setNote({...note,[e.target.name]:e.target.value})
 }
     const handleSubmit=(e)=>{
@@ -67,7 +67,7 @@ const change= (e)=>{
       onClick={handleClick}
       >add note</button> */}
 {notes.isLoading && <h1>loding...</h1>}
-<Modal/>
+{/* <Modal/> */}
   <div className='row gap-3'>
     {notesList}
   </div>
