@@ -39,6 +39,7 @@ const change= (e)=>{
         
      },[dispatch])
     //  const notesList = notes.notes.flatMap(note => note.blogs).map(note => (
+      //  const notesList =notes.notes && notes.notes.blogs ? notes.notes.blogs.map(note => (
        const notesList =notes.notes && notes.notes.blogs ? notes.notes.blogs.map(note => (
       // <div className='card' key={note.id}>
       //   <h1>{note.title}</h1>
@@ -46,12 +47,15 @@ const change= (e)=>{
       //   <h3>{note.tags}</h3>
       <>
       {/* {console.log(note._id)} */}
-        <Card id={note._id} title={note.title} descreption={note.descreption} tags={note.tags} />
+        {/* <Card id={note._id} title={note.title} descreption={note.descreption} tags={note.tags} /> */}
+       {/* { console.log(note)} */}
+        <Card id={note._id} note={note} />
         </>
       // </div>
     )):[];
   return (
     <div className='container'>
+      <h1>welcome to notess</h1>
       <form onSubmit={handleSubmit}>
         <Input placeholder={'Enter title'} name={'title'} label={'Title'} type={'text'} onChange={change}/>
       {/* <Input placeholder={'Enter description'}/> */}
